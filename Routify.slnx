@@ -1,3 +1,7 @@
 <Solution>
-  <Project Path="Routify.csproj" />
+  <Project Path="Routify.App.csproj" />
+  <Project Path="Routify.Auth/Routify.Auth.csproj" Id="a0b3882c-e1ef-4a73-a485-1d82698a6e0d" />
+  <Project Path="Routify.Gateway/Routify.Gateway.csproj" Id="de7c36d3-ed09-4556-a10c-09354c7a34d9" />
+  <Project Path="Routify.Logistica/Routify.Logistica.csproj" Id="d137a7d5-830f-48e6-8e53-46464f31e2e3" />
+  <Project Path="Routify.Shared/Routify.Shared.csproj" Id="f3943412-ffb7-44c9-bfc8-c2c91c055929" />
 </Solution>
