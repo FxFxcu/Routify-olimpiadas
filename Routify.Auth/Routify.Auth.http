@@ -1,0 +1,6 @@
+@Routify.Auth_HostAddress = http://localhost:5052
+
+GET {{Routify.Auth_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,28 @@
+services:
+  db-auth:
+    image: postgres:16
+    container_name: routify-db-auth
+    environment:
+      POSTGRES_DB: routify_auth
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-auth-data:/var/lib/postgresql/data
+
+  db-logistica:
+    image: postgres:16
+    container_name: routify-db-logistica
+    environment:
+      POSTGRES_DB: routify_logistica
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - db-logistica-data:/var/lib/postgresql/data
+
+volumes:
+  db-auth-data:
+  db-logistica-data:
