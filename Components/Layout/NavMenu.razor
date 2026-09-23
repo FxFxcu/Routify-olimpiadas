@@ -1,27 +1,64 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Routify</a>
+﻿<aside class="routify-sidebar">
+    <!-- Encabezado / Logo -->
+    <div class="sidebar-brand">
+        <div class="brand-logo">
+            <i class="bi bi-files"></i> <!-- Ícono de documentos superpuestos -->
+        </div>
+        <span class="brand-name">ROUTIFY</span>
+        <span class="brand-version">v1.0</span>
     </div>
-</div>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+    <!-- Navegación -->
+    <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+        <nav class="nav flex-column">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="home">
+                    <div class="nav-link-content">
+                        <img src="imagenes/home.png" alt="Icono" class="nav-icon" />
+                        <span>Menú</span>
+                    </div>
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="cursos">
+                    <div class="nav-link-content">
+                        <img src="imagenes/home.png" alt="Icono" class="nav-icon" />
+                        <span>Clientes</span>
+                    </div>
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="cursos">
+                    <div class="nav-link-content">
+                        <img src="imagenes/home.png" alt="Icono" class="nav-icon" />
+                        <span>Pedidos</span>
+                    </div>
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="cursos">
+                    <div class="nav-link-content">
+                        <img src="imagenes/home.png" alt="Icono" class="nav-icon" />
+                        <span>Envíos</span>
+                    </div>
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="cursos">
+                    <div class="nav-link-content">
+                        <img src="imagenes/home.png" alt="Icono" class="nav-icon" />
+                        <span>Vehículos</span>
+                    </div>
+                </NavLink>
+            </div>
+        </nav>
+    </div>
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
+    <!-- Pie / Perfil de usuario -->
+    <div class="sidebar-footer">
+        <div class="user-profile">
+            <div class="user-avatar">NA</div>
+            <span class="user-name">Nombre Apellido</span>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-    </nav>
-</div>
+    </div>
+</aside>
