@@ -116,6 +116,7 @@ public class LogisticaDbContext : DbContext
         // ---------- HistorialEstadoEnvio ----------
         modelBuilder.Entity<HistorialEstadoEnvio>(entity =>
         {
+            entity.HasKey(h => h.HistorialId);
             entity.Property(h => h.Estado).HasConversion<string>().HasMaxLength(20);
         });
 

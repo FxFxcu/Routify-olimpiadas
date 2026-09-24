@@ -1,3 +1,4 @@
+using Routify.Shared.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Routify.Logistica.Data;
