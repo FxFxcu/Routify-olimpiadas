@@ -1,0 +1,63 @@
+﻿@page "/pedidos"
+@inject NavigationManager Navigation
+
+<div class="layout-container">
+    <!-- Contenido Principal -->
+    <main class="main-card">
+        <h1 class="page-title">Pedidos</h1>
+
+        <div class="action-bar">
+            <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" placeholder="Buscar por nombre o por email" @bind="searchTerm" @bind:event="oninput" />
+            </div>
+
+            <div class="controls-right">
+                <div class="select-container">
+                    <select @bind="selectedEstado" class="status-select">
+                        <option value="Todos">Todos los estados</option>
+                        <option value="Confirmado">Confirmado</option>
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+                    <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+
+                <button class="btn-new-order">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    <span>Nuevo pedido</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Fecha</th>
+                        <th>Paquetes</th>
+                        <th>Estado</th>
+                        <th>Total</th>
+                        <th class="right-col">Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </main>
+</div>
+
+@code {
+    private string searchTerm = "";
+    private string selectedEstado = "Todos";
+
+    public class OrderModel
+    {
+        public int Id { get; set; }
+        public string Cliente { get; set; } = "";
+        public string Fecha { get; set; } = "";
+        public int Paquetes { get; set; }
+        public string Estado { get; set; } = "";
+        public int Total { get; set; }
+    }
+}

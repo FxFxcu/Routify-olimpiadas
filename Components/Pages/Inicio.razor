@@ -1,0 +1,28 @@
+﻿@page "/"
+@layout EmptyLayout
+@inject NavigationManager Navigation
+
+<div class="welcome-container">
+
+    <div class="welcome-content">
+        <img src="img/logo.png" alt="Routify" class="app-icon" />
+        <img src="img/routify.png" alt="ROUTIFY" class="app-logo" />
+
+        <p class="app-tagline">Pedidos, envíos y clientes, todo en un solo lugar.</p>
+
+        <button class="btn-login" @onclick="IniciarSesion">
+            Iniciar sesión
+        </button>
+    </div>
+
+    <span class="app-version">v1.0</span>
+
+</div>
+
+@code {
+    private void IniciarSesion()
+    {
+        // Ajustá la ruta según cómo hayas armado tu navegación
+        Navigation.NavigateTo("");
+    }
+}

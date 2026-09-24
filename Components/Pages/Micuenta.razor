@@ -1,0 +1,43 @@
+﻿@page "/mi-cuenta"
+@inject NavigationManager Navigation
+
+<div class="layout-container">
+    
+    <!-- Contenido Principal -->
+    <main class="main-card">
+        <h1 class="page-title">Mi cuenta</h1>
+
+        <div class="account-profile-container">
+            <div class="large-avatar">NA</div>
+            <h2 class="user-fullname">Nombre Apellido</h2>
+            <span class="role-badge">Administrador</span>
+
+            <div class="account-details-list">
+                <div class="detail-row">
+                    <span class="detail-label">Email</span>
+                    <span class="detail-value">nombre.ejemplo@gmail.com</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Contraseña</span>
+                    <span class="detail-value password-dots">••••••••••••••</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Miembro desde</span>
+                    <span class="detail-value">08 de enero de 2020</span>
+                </div>
+            </div>
+
+            <button class="btn-logout" @onclick="CerrarSesion">
+                Cerrar sesión
+            </button>
+        </div>
+    </main>
+</div>
+
+@code {
+    private void CerrarSesion()
+    {
+        // Lógica de cierre de sesión
+        Navigation.NavigateTo("/login");
+    }
+}

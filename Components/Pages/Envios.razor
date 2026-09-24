@@ -1,0 +1,91 @@
+﻿@page "/envios"
+@inject NavigationManager Navigation
+
+<div class="layout-container">
+
+    <!-- Contenido Principal -->
+    <main class="main-card">
+        <h1 class="page-title">Envíos</h1>
+
+        <div class="action-bar">
+            <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" placeholder="Buscar por nombre o por email" @bind="searchTerm" @bind:event="oninput" />
+            </div>
+
+            <div class="controls-right">
+                <div class="select-container">
+                    <select @bind="selectedEstado" class="status-select">
+                        <option value="Todos">Todos los estados</option>
+                        <option value="En tránsito">En tránsito</option>
+                        <option value="Entregado">Entregado</option>
+                        <option value="Pendiente">Pendiente</option>
+                    </select>
+                    <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+
+                <button class="btn-new-shipping">
+                    <span>+ Nuevo envío</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Destino</th>
+                        <th>Vehículo</th>
+                        <th>Estado</th>
+                        <th>Entrega est.</th>
+                        <th>Costo</th>
+                        <th class="right-col">Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </main>
+</div>
+
+@code {
+    private string searchTerm = "";
+    private string selectedEstado = "Todos";
+
+    public class EnvioModel
+    {
+        public int Id { get; set; }
+        public string Cliente { get; set; } = "";
+        public string Destino { get; set; } = "";
+        public string Vehiculo { get; set; } = "";
+        public string Estado { get; set; } = "";
+        public string EntregaEst { get; set; } = "";
+        public string Costo { get; set; } = "";
+    }
+
+    private List<EnvioModel> envios = Enumerable.Range(1, 8).Select(i => new EnvioModel
+    {
+        Id = i,
+        Cliente = "Nombre y Apellido",
+        Destino = "CABA",
+        Vehiculo = "ABC123",
+        Estado = "En tránsito",
+        EntregaEst = "17 de sep 2026",
+        Costo = "$562.273,37"
+    }).ToList();
+
+    private IEnumerable<EnvioModel> FilteredEnvios => envios
+        .Where(e => string.IsNullOrWhiteSpace(searchTerm) || e.Cliente.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+        .Where(e => selectedEstado == "Todos" || e.Estado.Equals(selectedEstado, StringComparison.OrdinalIgnoreCase));
+
+    private string GetStatusClass(string estado)
+    {
+        return estado.ToLower() switch
+        {
+            "en tránsito" => "en-transito",
+            "entregado" => "entregado",
+            "pendiente" => "pendiente",
+            _ => "default-status"
+        };
+    }
+}

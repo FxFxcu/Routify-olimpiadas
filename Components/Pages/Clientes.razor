@@ -1,0 +1,49 @@
+﻿@page "/clientes"
+@inject NavigationManager Navigation
+
+    <!-- Contenido Principal -->
+    <main class="main-card">
+        <h1 class="page-title">Clientes</h1>
+
+        <div class="action-bar">
+            <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" placeholder="Buscar por nombre o por email" @bind="searchTerm" @bind:event="oninput" />
+            </div>
+
+            <button class="btn-new-client">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>Nuevo cliente</span>
+            </button>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Registrado</th>
+                        <th class="center-col">Pedidos</th>
+                        <th class="right-col">Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </main>
+</div>
+
+@code {
+    private string searchTerm = "";
+
+    public class ClientModel
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; } = "";
+        public string Email { get; set; } = "";
+        public string Telefono { get; set; } = "";
+        public string Registrado { get; set; } = "";
+        public int Pedidos { get; set; }
+    }
+}

@@ -1,0 +1,74 @@
+﻿@page "/vehiculos"
+@inject NavigationManager Navigation
+
+<div class="layout-container">
+
+    <!-- Contenido Principal -->
+    <main class="main-card">
+        <h1 class="page-title">Vehículos</h1>
+
+        <div class="action-bar">
+            <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" placeholder="Buscar por nombre o por email" @bind="searchTerm" @bind:event="oninput" />
+            </div>
+
+            <div class="controls-right">
+                <div class="select-container">
+                    <select @bind="selectedEstado" class="status-select">
+                        <option value="Todos">Todos los estados</option>
+                        <option value="En ruta">En ruta</option>
+                        <option value="Disponible">Disponible</option>
+                        <option value="Mantenimiento">Mantenimiento</option>
+                    </select>
+                    <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+
+                <button class="btn-new-vehicle">
+                    <span>+ Nuevo vehiculo</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Patente</th>
+                        <th>Tipo</th>
+                        <th>Capacidad</th>
+                        <th>Estado</th>
+                        <th>Envíos activos</th>
+                        <th class="right-col">Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </main>
+</div>
+
+@code {
+    private string searchTerm = "";
+    private string selectedEstado = "Todos";
+
+    public class VehiculoModel
+    {
+        public int Id { get; set; }
+        public string Patente { get; set; } = "";
+        public string Tipo { get; set; } = "";
+        public string Capacidad { get; set; } = "";
+        public string Estado { get; set; } = "";
+        public int EnviosActivos { get; set; }
+    }
+
+    private string GetStatusClass(string estado)
+    {
+        return estado.ToLower() switch
+        {
+            "en ruta" => "en-ruta",
+            "disponible" => "disponible",
+            "mantenimiento" => "mantenimiento",
+            _ => "default-status"
+        };
+    }
+}
