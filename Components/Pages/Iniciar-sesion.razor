@@ -1,7 +1,9 @@
 ﻿@page "/sesion"
 @layout EmptyLayout
 @using System.ComponentModel.DataAnnotations
+@using Routify.App.Services
 @inject NavigationManager Navigation
+@inject AuthService AuthService
 
 <div class="login-container">
     <div class="login-left">
@@ -70,10 +72,18 @@
         isLoading = true;
         errorMessage = null;
 
-        await Task.Delay(500);
+        var (exito, error) = await AuthService.LoginAsync(loginModel.UserId, loginModel.Password);
 
         isLoading = false;
-        Navigation.NavigateTo("/clientes");
+
+        if (exito)
+        {
+            Navigation.NavigateTo("/clientes");
+        }
+        else
+        {
+            errorMessage = error ?? "No se pudo iniciar sesión.";
+        }
     }
 
     private void GoBack()

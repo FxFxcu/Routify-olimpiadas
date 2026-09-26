@@ -72,8 +72,21 @@
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Components\Pages\" />
-    </ItemGroup>
+	<ItemGroup>
+		<!-- Evita que el globbing automático absorba los .cs de los microservicios
+             (están en carpetas hermanas dentro de la misma raíz del repo) -->
+		<Compile Remove="Routify.Auth\**\*.cs" />
+		<Compile Remove="Routify.Gateway\**\*.cs" />
+		<Compile Remove="Routify.Logistica\**\*.cs" />
+		<Compile Remove="Routify.Shared\**\*.cs" />
+		<Content Remove="Routify.Auth\**" />
+		<Content Remove="Routify.Gateway\**" />
+		<Content Remove="Routify.Logistica\**" />
+		<Content Remove="Routify.Shared\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="Routify.Shared\Routify.Shared.csproj" />
+	</ItemGroup>
 
 </Project>
