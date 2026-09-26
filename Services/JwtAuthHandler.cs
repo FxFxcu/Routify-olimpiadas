@@ -1,6 +1,6 @@
-﻿using System.Net.Http.Headers;
+﻿namespace Routify.Services;
 
-namespace Routify.App.Services;
+using System.Net.Http.Headers;
 
 public class JwtAuthHandler : DelegatingHandler
 {

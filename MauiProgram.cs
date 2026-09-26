@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using Routify.App.Services;
+using Routify.Services;
+using System.Diagnostics;
 
 namespace Routify
 {
@@ -7,6 +8,15 @@ namespace Routify
     {
         public static MauiApp CreateMauiApp()
         {
+            Debugger.Launch();
+
+            var logPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "routify-log.txt");
+
+            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            {
+                File.AppendAllText(logPath, $"{DateTime.Now}: UNHANDLED: {e.ExceptionObject}{Environment.NewLine}{Environment.NewLine}");
+            };
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
@@ -17,8 +27,8 @@ namespace Routify
 
             builder.Services.AddMauiBlazorWebView();
 
-            // Base URL del Gateway. Windows/desktop: localhost.
-            // Emulador de Android: cambiar a "http://10.0.2.2:5032/"
+            builder.Logging.AddProvider(new FileLoggerProvider(logPath));
+
             const string gatewayBaseUrl = "http://localhost:5032/";
 
             builder.Services.AddSingleton<TokenStore>();

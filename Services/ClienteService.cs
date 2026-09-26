@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Json;
 using Routify.Shared.Dtos;
 
-namespace Routify.App.Services;
+namespace Routify.Services;
 
 public class ClienteService
 {

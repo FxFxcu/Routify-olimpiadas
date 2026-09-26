@@ -1,7 +1,8 @@
-﻿using System.Net.Http.Json;
+﻿namespace Routify.Services;
+
+using System.Net.Http.Json;
 using Routify.Shared.Dtos;
 
-namespace Routify.App.Services;
 
 public class AuthService
 {
